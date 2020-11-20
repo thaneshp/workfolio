@@ -1,0 +1,9 @@
+.main1 {
+    flex-basis: 40%;
+    position: relative;
+    left: 0;
+    top: 0px;
+    width: 420px;
+    height: 35vh;
+    background-color: #6E6ED6;
+}

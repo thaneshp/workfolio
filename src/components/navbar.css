@@ -1,0 +1,17 @@
+.navbar-custom {
+    /* background-color: black; */
+}
+
+.nav-item a{
+    color: white !important;
+    font-size: 1.1em !important;
+}
+
+.inactiveLink {
+    pointer-events: none;
+    cursor: default;
+}
+
+.navbar-brand {
+    font-size: 1.3em !important;
+}

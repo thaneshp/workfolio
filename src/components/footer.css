@@ -1,0 +1,82 @@
+.Footer {
+  display: flex;
+  flex-direction: row;
+  background-color: #6E6ED6;
+  width: 100%;
+  height: 200px;
+}
+
+.Footer-Logo-Section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 20px;
+  width: 200px;
+}
+
+.Footer-Category {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-top: 20px;
+  width: 200px;
+}
+
+.Footer-Category-Social {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-top: 20px;
+  padding-right: 20px;
+  width: 200px;
+}
+
+.Footer-Logo-Icon {
+  width: 120px;
+}
+
+.Footer-Logo-Title {
+  color: white;
+  font-size: 20px;
+}
+
+.Footer-Category-Parent {
+  color: black;
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.Footer-Category-Child {
+  color: black;
+  font-size: 16px;
+  margin-top: 5px
+}
+
+.Footer-Social-Section {
+  margin: 10px 0px 10px 0px;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.Footer-Send-Email-Section {
+  display: flex;
+  flex-direction: row;
+}
+
+.Social-Icon {
+  width: 24x;
+  height: 24px;
+}
+
+.Send-Icon {
+  width: 24x;
+  height: 24px;
+  margin: 5px;
+}
+
+@media screen and (max-width: 400px) { 
+  .Footer-Category {
+    display: none;
+  }
+}
