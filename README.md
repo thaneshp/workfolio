@@ -1,68 +1,134 @@
+# Workfolio
+
+Workfolio is a platform for students and professionals to showcase their work online. It was built as part of my final year capstone project, IT Project (COMP30022). This is a team project developed using React, Firebase Bootstrap and GCP. It is not maintained.
+
+## Support
+Reach out to me on one of the following places!
+- Website: https://thanesh.io/
+- Email: thanesh.pannirselvam@gmail.com
+- LinkedIn: linkedin.com/in/thanesh-pannirselvam
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+<!--
 
-In the project directory, you can run:
+## Algorithms Used
 
-### `npm start`
+### Scheduling Algorithms
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+1. First-come first-served (ff)
+    - Executes processes in order of their arrival.
+    - Continues executing until the total running time reaches the specified job-time.
+2. Round-robin (rr)
+    - Every process is executed on the CPU for a limited amount of time. 
+    - Once this time has elapsed, the CPU is given to the next process in the queue and the current process is placed at the end.
+    - This sequence repeats until all processes have finished executing.
+3. Shortest Job First (cs)
+    - Compares all the processes that have arrived and sorts them based on their running time.
+    - It then executes the processes with the shortest running time first.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+### Memory Management Algorithms
 
-### `npm test`
+1. Swapping-X (p)
+    - A method used to swap pages of processes between main memory and the disk.
+    - A process can execute if all the pages it requires is in main memory, otherwise another process must be swapped out to make space.
+2. Virtual memory 
+    - A method used to mimic the availability of larger memory.
+    1. Least Recently Used (v)
+        - Evicts the pages of the processes which was least recently executed.
+    2. Most Recently Used (cm)
+        - Evicts the pages of the processes which was most recently executed.
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+**Note**: The letters given in the parenthesis are commands to be used in the execution of the program. More details given below.
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Clone
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+Clone this repo to your local machine using https://github.com/thaneshp/process-scheduler.git
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Setup
 
-### `npm run eject`
+Using terminal. CD into the project folder and type in the following command to install.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+```bash
+$ make
+```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+You may also use this command to remove any of the installed executables.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+```bash
+$ make clean
+```
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## Usage
 
-## Learn More
+Here is how a typical input should be formatted. The order shown here is unimportant.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```bash
+$ ./scheduler -f <filename> -a <scheduling-algorithm> -m <memory-allocation> -s <memory-size> -q <quantum>
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Arguments
+- \-f ***filename*** will specify the name of file describing the processes.
+- \-a ***scheduling-algorithm*** where you can choose from one of the scheduling algorithms given above. {ff, rr, cs}
+- \-m ***memory allocation*** where you can choose from {u,p,v,cm} where **u** indicates unlimited memory.
+- \-s ***memory-size*** where memory-size is an integer indicating the size of memory in KB. This option can be ignored in the case of unlimited memory. i.e., when **-m u**
+- \-q ***quantum*** where quantum is an integer (in seconds) used to specify the time each process should run when using round-robin algorithm.
 
-### Code Splitting
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+## Examples
 
-### Analyzing the Bundle Size
+1. First-come first-serve algorithm using unlimited memory.
+```bash
+$ ./scheduler -f input-data/processes.txt -a ff -m u
+```
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+2. Round-robin algorithm, allocated 10 seconds quantum time and using unlimited memory.
+```bash
+$ ./scheduler -f input-data/processes.txt -a rr -m u -q 10
+```
 
-### Making a Progressive Web App
+3. First-come first-serve algorithm using Swapping-X algorithm with 20KB memory.
+```bash
+$ ./scheduler -f input-data/rr_memoryoverlap.txt -a ff -s 20 -m p
+```
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+4. Round-robin algorithm, allocated 10 seconds quantum time utilsing Swapping-X algorithm and 20KB memory.
+```bash
+$ ./scheduler -f input-data/rr_memoryoverlap.txt -a rr -s 20 -m p -q 10
+```
 
-### Advanced Configuration
+5. First-come first-serve algorithm utilising Swapping-X algorithm and 20KB memory.
+```bash
+$ ./scheduler -f input-data/rr_memoryoverlap.txt -a ff -s 20 -m p
+```
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+6. Round-robin algorithm, allocated 10 seconds quantum time utilising Least Recently Used virtual memory algorithm and 20KB memory.
+```bash
+$ ./scheduler -f input-data/rr_memoryoverlap.txt -a rr -s 20 -m v -q 10
+```
 
-### Deployment
+7. First-come first-serve algorithm utilising Swapping-X algorithm and 48KB memory.
+```bash
+$ ./scheduler -f input-data/timejumps.txt -a ff -s 48 -m p
+```
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+8. Round-robin algorithm allocated 10 seconds quantum time utilising Swapping-X algorithm and 100KB memory.
+```bash
+$ ./scheduler -f input-data/timejumps.txt -a rr -s 100 -m p -q 10
+```
 
-### `npm run build` fails to minify
+9. Round-robin algorithm, allocated 10 seconds quantum time utilising Least Recently Used virtual memory algorithm and 100KB memory.
+```bash
+$ ./scheduler -f input-data/timejumps.txt -a rr -s 100 -m v -q 10
+```
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+10. Round-robin algorithm, allocated 10 seconds quantum time utilising Swapping-X algorithm and 40KB memory.
+```bash
+$ ./scheduler -f input-data/rr_memoryoverlap.txt -a rr -s 40  -m p -q 10
+```
+
+11. Round-robin algorithm, allocated 10 seconds quantum time utilising Least Recently Used virtual memory algorithm and 40KB memory.
+```bash
+$ ./scheduler -f input-data/rr_memoryoverlap.txt -a rr -s 40 -m v -q 10
+```
+-->
